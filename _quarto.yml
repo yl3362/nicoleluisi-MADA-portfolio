@@ -18,7 +18,7 @@ website:
             href: ./tidytuesday_exercise.html
     right:
       - icon: github 
-        href: https://nicole-luisi.github.io/nicoleluisi-MADA-portfolio/    
+        href: https://github.com/nicole-luisi/nicoleluisi-MADA-portfolio.git    
 
 format:
   html:
