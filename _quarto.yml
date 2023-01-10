@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "My Data Analysis Portfolio"
+  title: "Nicole Luisi: Data Analysis Portfolio"
   navbar:
     left:
       - text: "About Me"
@@ -18,11 +18,11 @@ website:
             href: ./tidytuesday_exercise.html
     right:
       - icon: github 
-        href: URL-TO-THIS-REPOSITORY-HERE        
+        href: https://nicole-luisi.github.io/nicoleluisi-MADA-portfolio/    
 
 format:
   html:
-    theme: cosmo
+    theme: yeti
     highlight: zenburn
     css: styles.css
     toc: FALSE

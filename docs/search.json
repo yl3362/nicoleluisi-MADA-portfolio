@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "aboutme.html",
+    "href": "aboutme.html",
+    "title": "About me",
+    "section": "",
+    "text": "Add some text and a figure describing myself."
+  },
+  {
+    "objectID": "coding_exercise.html",
+    "href": "coding_exercise.html",
+    "title": "R Coding Exercise",
+    "section": "",
+    "text": "Placeholder file for the future R coding exercise."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Nicole Luisi’s Website & Data Analysis Portfolio",
+    "section": "",
+    "text": "Welcome to my MDA website for the Spring 2023 semester.\n\nPlease use the Menu Bar above to look around.\nWARNING: You will see an unreasonable number of pictures of my dog on this website before the semester is over."
+  },
+  {
+    "objectID": "tidytuesday_exercise.html",
+    "href": "tidytuesday_exercise.html",
+    "title": "Tidy Tuesday Exercise",
+    "section": "",
+    "text": "Placeholder file for the future Tidy Tuesday exercise."
+  },
+  {
+    "objectID": "visualization_exercise.html",
+    "href": "visualization_exercise.html",
+    "title": "Visualization Exercise",
+    "section": "",
+    "text": "Placeholder file for the future visualization exercise."
+  },
+  {
+    "objectID": "index.html#hello",
+    "href": "index.html#hello",
+    "title": "Website & Data Analysis Portfolio",
+    "section": "Hello!",
+    "text": "Hello!\nWelcome to my MDA website for Spring 2023.\n\nPlease use the Menu Bar above to look around.\nHave fun!"
+  },
+  {
+    "objectID": "aboutme.html#bio",
+    "href": "aboutme.html#bio",
+    "title": "About me",
+    "section": "Bio",
+    "text": "Bio\nI am a 1st year PhD student in"
+  },
+  {
+    "objectID": "aboutme.html#background",
+    "href": "aboutme.html#background",
+    "title": "About Me",
+    "section": "Background",
+    "text": "Background\nHello! I am a 1st year PhD student in Epidemiology, Data Analysis & Modeling track. I work at Emory University as a Director of Data Analytics and Informatics Projects for a research group in the Department of Epidemiology where I provide data systems and analytic support for several HIV, COVID-19, and PWID projects. I am also an instructor at Emory, I teach mostly graduate level intro courses in SAS and R programming and survey methods."
+  },
+  {
+    "objectID": "aboutme.html#research-interests",
+    "href": "aboutme.html#research-interests",
+    "title": "About Me",
+    "section": "Research Interests",
+    "text": "Research Interests\nMy research interests include epidemiologic research methods, web-based survey methods, innovative data technologies for eHealth and mHealth, and data analysis and visualization."
+  },
+  {
+    "objectID": "aboutme.html#course-goals",
+    "href": "aboutme.html#course-goals",
+    "title": "About Me",
+    "section": "Course Goals",
+    "text": "Course Goals\nI have been using SAS for 10+ years so I will defend it to the death, but even I have to admit that R is very cool. I’ve been trying to incorporate more R in my work over the last couple of years, but I know I have a lot to learn and I’m hoping to improve my skills in this class. I’m looking forward to getting some experience with GitHub, RShiny, etc. - these are all pretty new to me but I’d love to make these tools part of my routine!"
+  },
+  {
+    "objectID": "aboutme.html#fun-fact",
+    "href": "aboutme.html#fun-fact",
+    "title": "About Me",
+    "section": "Fun Fact",
+    "text": "Fun Fact\nI was once interviewed for a job by a horse named Linus. He ate grass and threw up on me during the meeting, very unprofessional, 0/10, do not recommend."
+  },
+  {
+    "objectID": "aboutme.html#nerd-humor",
+    "href": "aboutme.html#nerd-humor",
+    "title": "About Me",
+    "section": "Nerd Humor",
+    "text": "Nerd Humor\nIt looks like they stopped updating this site but it has a ton of content to browse. It’s full of examples of what NOT to do, but the results are amusing. The link for the main site is below but this link lets you play around and select your own topics/variables.\nhttps://www.tylervigen.com/spurious-correlations"
+  }
+]

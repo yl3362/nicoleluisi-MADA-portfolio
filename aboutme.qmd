@@ -1,8 +1,30 @@
 ---
-title: "About me"
+title: "About Me"
 output: 
   html_document:
       toc: FALSE
 ---
 
-Add some text and a figure describing myself.
+![](fallwdoug.png){fig-align="center"}
+
+**Background**
+---------
+Hello! I am a 1st year PhD student in Epidemiology, Data Analysis & Modeling track. I work at Emory University as a Director of Data Analytics and Informatics Projects for a research group in the Department of Epidemiology where I provide data systems and analytic support for several HIV, COVID-19, and PWID projects. I am also an instructor at Emory, I teach mostly graduate level intro courses in SAS and R programming and survey methods. 
+
+**Research Interests**
+---------
+My research interests include epidemiologic research methods, web-based survey methods, innovative data technologies for eHealth and mHealth, and data analysis and visualization.
+
+**Course Goals**
+---------
+I have been using SAS for 10+ years so I will defend it to the death, but even I have to admit that R is very cool. I've been trying to incorporate more R in my work over the last couple of years, but I know I have a lot to learn and I'm hoping to improve my skills in this class. I'm looking forward to getting some experience with GitHub, RShiny, etc. - these are all pretty new to me but I'd love to make these tools part of my routine!
+
+**Fun Fact**
+---------
+I was once interviewed for a job by a horse named Linus. He ate grass and threw up on me during the meeting, very unprofessional, 0/10, do not recommend. 
+
+**Nerd Humor**
+---------
+It looks like they stopped updating this site but it has a ton of content to browse. It's full of examples of what NOT to do, but the results are amusing. The link for the main site is below but [this link](https://tylervigen.com/discover) lets you play around and select your own topics/variables.
+
+<https://www.tylervigen.com/spurious-correlations>

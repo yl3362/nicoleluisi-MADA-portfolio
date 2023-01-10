@@ -1,16 +1,14 @@
 ---
-title: "My website and data analysis portfolio"
+title: "Nicole Luisi's Website & Data Analysis Portfolio"
 output: 
   html_document:
     toc: FALSE
 ---
 
-# Hello
+## Hello! 
 
-### And hello again
-
-Welcome to **my website** and _data analysis portfolio._ 
+Welcome to my **MDA website** for the _Spring 2023_ semester. 
 
 
 * Please use the `Menu Bar` above to look around.
-* Have fun!
+* *WARNING*: You will see an unreasonable number of pictures of my dog on this website before the semester is over. 
