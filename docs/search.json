@@ -1,54 +1,5 @@
 [
   {
-    "objectID": "aboutme.html",
-    "href": "aboutme.html",
-    "title": "About me",
-    "section": "",
-    "text": "Add some text and a figure describing myself."
-  },
-  {
-    "objectID": "coding_exercise.html",
-    "href": "coding_exercise.html",
-    "title": "R Coding Exercise",
-    "section": "",
-    "text": "Placeholder file for the future R coding exercise."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Nicole Luisi’s Website & Data Analysis Portfolio",
-    "section": "",
-    "text": "Welcome to my MDA website for the Spring 2023 semester.\n\nPlease use the Menu Bar above to look around.\nWARNING: You will see an unreasonable number of pictures of my dog on this website before the semester is over."
-  },
-  {
-    "objectID": "tidytuesday_exercise.html",
-    "href": "tidytuesday_exercise.html",
-    "title": "Tidy Tuesday Exercise",
-    "section": "",
-    "text": "Placeholder file for the future Tidy Tuesday exercise."
-  },
-  {
-    "objectID": "visualization_exercise.html",
-    "href": "visualization_exercise.html",
-    "title": "Visualization Exercise",
-    "section": "",
-    "text": "Placeholder file for the future visualization exercise."
-  },
-  {
-    "objectID": "index.html#hello",
-    "href": "index.html#hello",
-    "title": "Website & Data Analysis Portfolio",
-    "section": "Hello!",
-    "text": "Hello!\nWelcome to my MDA website for Spring 2023.\n\nPlease use the Menu Bar above to look around.\nHave fun!"
-  },
-  {
-    "objectID": "aboutme.html#bio",
-    "href": "aboutme.html#bio",
-    "title": "About me",
-    "section": "Bio",
-    "text": "Bio\nI am a 1st year PhD student in"
-  },
-  {
     "objectID": "aboutme.html#background",
     "href": "aboutme.html#background",
     "title": "About Me",
@@ -82,5 +33,33 @@
     "title": "About Me",
     "section": "Nerd Humor",
     "text": "Nerd Humor\nIt looks like they stopped updating this site but it has a ton of content to browse. It’s full of examples of what NOT to do, but the results are amusing. The link for the main site is below but this link lets you play around and select your own topics/variables.\nhttps://www.tylervigen.com/spurious-correlations"
+  },
+  {
+    "objectID": "coding_exercise.html",
+    "href": "coding_exercise.html",
+    "title": "R Coding Exercise",
+    "section": "",
+    "text": "Placeholder file for the future R coding exercise."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Nicole Luisi’s Website & Data Analysis Portfolio",
+    "section": "",
+    "text": "Welcome to my MDA website for the Spring 2023 semester.\n\nPlease use the Menu Bar above to look around.\nWARNING: You will see an unreasonable number of pictures of my dog on this website before the semester is over."
+  },
+  {
+    "objectID": "tidytuesday_exercise.html",
+    "href": "tidytuesday_exercise.html",
+    "title": "Tidy Tuesday Exercise",
+    "section": "",
+    "text": "Placeholder file for the future Tidy Tuesday exercise."
+  },
+  {
+    "objectID": "visualization_exercise.html",
+    "href": "visualization_exercise.html",
+    "title": "Visualization Exercise",
+    "section": "",
+    "text": "Placeholder file for the future visualization exercise."
   }
 ]
