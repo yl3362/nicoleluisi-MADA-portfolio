@@ -5,15 +5,15 @@ output:
     toc: FALSE
 ---
 
-**LOADING AND CHECKING DATA**
+## **LOADING AND CHECKING DATA**
 
-##Install packages required for exercise
+### Install packages required for exercise
 ```{r}
 #Commented out after initial install
 #install.packages(c("dslabs","ggplot2","tidyverse"))
 ```
 
-##Load dslabs package
+### Load packages
 ```{r}
 #| warning: false
 library("dslabs")
@@ -21,67 +21,67 @@ library("ggplot2")
 library("tidyverse")
 ```
 
-##Look at help file for gapminder data
+### Look at help file for gapminder data
 ```{r}
 help(gapminder)
 ```
 
-##Get an overview of data structure for gapminder
+### Get an overview of data structure for gapminder
 ```{r}
 str(gapminder)
 ```
 
-##Get a summary of data in gapminder
+### Get a summary of data in gapminder
 ```{r}
 summary(gapminder)
 ```
 
-##Determine the type of object gapminder is
+### Determine the type of object gapminder is
 ```{r}
 class(gapminder)
 ```
 
-**PROCESSING DATA**
+## **PROCESSING DATA**
 
-##Assign African countries to a new object called africadata
+### Assign African countries to a new object called africadata
 ```{r}
 africadata<-gapminder[gapminder$continent == "Africa", ]
 ```
 
-##Run str and summary on africadata to check work
-###2907 obs and 9 vars
+### Run str and summary on africadata to check work
+#### (2907 obs and 9 vars)
 ```{r}
 str(africadata)
 summary(africadata)
 ```
 
-##Create new object that contains only infant_mortality and life_expectancy
+### Create new object that contains only infant_mortality and life_expectancy
 ```{r}
 infmort_lifeexp <- africadata[,c("infant_mortality","life_expectancy")]
 ```
 
-##Run str and summary on new infmort_lifeexp object
-###2907 obs and 2 vars
+### Run str and summary on new infmort_lifeexp object
+#### (2907 obs and 2 vars)
 ```{r}
 str(infmort_lifeexp)
 summary(infmort_lifeexp)
 ```
 
-##Create new object that contains only population and life_expectancy
+### Create new object that contains only population and life_expectancy
 ```{r}
 pop_lifeexp <- africadata[,c("population","life_expectancy")]
 ```
 
-##Run str and summary on new pop_lifeexp object
-###2907 obs and 2 vars
+### Run str and summary on new pop_lifeexp object
+#### (2907 obs and 2 vars)
 ```{r}
 str(pop_lifeexp)
 summary(pop_lifeexp)
 ```
 
-**PLOTTING**
+## **PLOTTING**
 
-##Plot life expectancy as a function of infant mortality 
+### Plot life expectancy as a function of infant mortality 
 ```{r}
 ggplot(data = infmort_lifeexp) + theme_bw() + 
   geom_point(mapping = aes(infant_mortality, life_expectancy), color = "red") +
@@ -90,8 +90,8 @@ ggplot(data = infmort_lifeexp) + theme_bw() +
   xlab("Infant Mortality (Deaths per 1000)")
 ```
 
-##Plot life expectancy as a function of population size, x-axis set to log scale
-###Streaks of data likely clustering by year
+### Plot life expectancy as a function of population size, x-axis set to log scale
+#### (Streaks of data likely clustering by year)
 ```{r}
 ggplot(data = pop_lifeexp) + theme_bw() + 
   geom_point(mapping = aes(log10(population), life_expectancy), color = "blue") +
@@ -100,10 +100,10 @@ ggplot(data = pop_lifeexp) + theme_bw() +
   xlab("Population Size (Deaths per 1000, Log Scale)")
 ```
 
-**MORE DATA PROCESSING**
+## **MORE DATA PROCESSING**
 
-##Figure out which years have missing data for infant mortality
-###Years 1960 through 1981, 2016
+### Figure out which years have missing data for infant mortality
+#### (Years 1960 through 1981, 2016)
 ```{r}
 table(is.na(africadata$infant_mortality)) #226 missing values
 check_missing <- africadata %>% 
@@ -112,22 +112,22 @@ check_missing <- africadata %>%
 table(check_missing$year)
 ```
 
-##Create a new object with only the data for the year 2000 from africadata
+### Create a new object with only the data for the year 2000 from africadata
 ```{r}
 africadata_2000 <- africadata %>%
   filter(year == "2000")
 ```
 
-##Run str and summary on new africadata_2000 object
-###51 obs, 9 vars
+### Run str and summary on new africadata_2000 object
+#### (51 obs, 9 vars)
 ```{r}
 str(africadata_2000)
 summary(africadata_2000)
 ```
 
-**MORE PLOTTING**
+## **MORE PLOTTING**
 
-##Plot life expectancy as a function of infant mortality (year 2000 only)
+### Plot life expectancy as a function of infant mortality (year 2000 only)
 ```{r}
 ggplot(data = africadata_2000) + theme_bw() + 
   geom_point(mapping = aes(infant_mortality, life_expectancy), color = "red") +
@@ -136,7 +136,7 @@ ggplot(data = africadata_2000) + theme_bw() +
   xlab("Infant Mortality (Deaths per 1000)")
 ```
 
-##Plot life expectancy as a function of population size, x-axis set to log scale
+### Plot life expectancy as a function of population size, x-axis set to log scale
 ```{r}
 ggplot(data = africadata_2000) + theme_bw() + 
   geom_point(mapping = aes(log10(population), life_expectancy), color = "blue") +
@@ -145,45 +145,55 @@ ggplot(data = africadata_2000) + theme_bw() +
   xlab("Population Size (Deaths per 1000, Log Scale)")
 ```
 
-**A SIMPLE FIT**
+## **A SIMPLE FIT**
 
-##Using year 2000 data, fit life expectancy as the outcome and infant mortality as the predictor 
+### Using year 2000 data, fit life expectancy as the outcome and infant mortality as the predictor 
 ```{r}
 fit1_lifeexp_infmort <- lm(life_expectancy~infant_mortality, data = africadata_2000)
 ```
 
-##Using year 2000 data, fit life expectancy as the outcome and population as the predictor 
+### Using year 2000 data, fit life expectancy as the outcome and population as the predictor 
 ```{r}
 fit2_lifeexp_pop <- lm(life_expectancy~population, data = africadata_2000)
 ```
 
-##Apply summary command to both models; based on p-values what do you conclude?
+### Apply summary command to both models; based on p-values what do you conclude?
 ```{r}
 summary(fit1_lifeexp_infmort) 
 summary(fit2_lifeexp_pop)
 ```
+
+##### In model 1, p-value = 2.83e-08; significant relationship between life expectancy and infant mortality (as infant mortality increases, life expectancy decreases). In model 2, p-value = 0.616; no significant relationship between life expectancy and population size.
+
+
+**------------------------------------------------------**
+
+**SECTION ADDED BY IRENE CAVROS**
+
+**------------------------------------------------------**
+
+
+### Additional data plots
+
 ```{r}
-#In model 1, p-value = 2.83e-08; significant relationship between life expectancy and infant mortality (as infant mortality increases, life expectancy decreases). In model 2, p-value = 0.616; no significant relationship between life expectancy and population size.
-```
-
-##SECTION ADDED BY IRENE CAVROS
-
-##Additional data plots
-
 #plot life expectancy as a function of GDP (year 2000 only)
 ggplot(data = africadata_2000) + theme_bw() + geom_point(mapping = aes(gdp, life_expectancy), color = "red") + labs(title = "Life Expectancy and GDP in African Countries, Year 2000 Only") + ylab("Life Expectancy (Years)") + xlab("GDP")
 
 #barplot of infant mortality in the year 2000 by country
-ggplot(data=year_2000, aes (x=country, y=infant_mortality))
+#nicole commented out, too many countries for this plot
+#ggplot(data=africadata_2000, aes (x=country, y=infant_mortality))
+```
 
-##Fit another model
+### Fit another model
+
+```{r}
 gdp_le_fit <- lm(life_expectancy~gdp, data = africadata_2000)
 summary(gdp_le_fit) 
 
-##Fit results in table
+#Fit results in table
 library(broom)
 tidy(gdp_le_fit)
 augment(gdp_le_fit)
 glance(gdp_le_fit)
-
+```
 

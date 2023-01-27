@@ -199,26 +199,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p><strong>LOADING AND CHECKING DATA</strong></p>
-<p>##Install packages required for exercise</p>
+<section id="loading-and-checking-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-and-checking-data"><strong>LOADING AND CHECKING DATA</strong></h2>
+<section id="install-packages-required-for-exercise" class="level3">
+<h3 class="anchored" data-anchor-id="install-packages-required-for-exercise">Install packages required for exercise</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Commented out after initial install</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c("dslabs","ggplot2","tidyverse"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Load dslabs package</p>
+</section>
+<section id="load-packages" class="level3">
+<h3 class="anchored" data-anchor-id="load-packages">Load packages</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dslabs"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Look at help file for gapminder data</p>
+</section>
+<section id="look-at-help-file-for-gapminder-data" class="level3">
+<h3 class="anchored" data-anchor-id="look-at-help-file-for-gapminder-data">Look at help file for gapminder data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>starting httpd help server ... done</code></pre>
 </div>
 </div>
-<p>##Get an overview of data structure for gapminder</p>
+</section>
+<section id="get-an-overview-of-data-structure-for-gapminder" class="level3">
+<h3 class="anchored" data-anchor-id="get-an-overview-of-data-structure-for-gapminder">Get an overview of data structure for gapminder</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -234,7 +242,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  $ region          : Factor w/ 22 levels "Australia and New Zealand",..: 19 11 10 2 15 21 2 1 22 21 ...</code></pre>
 </div>
 </div>
-<p>##Get a summary of data in gapminder</p>
+</section>
+<section id="get-a-summary-of-data-in-gapminder" class="level3">
+<h3 class="anchored" data-anchor-id="get-a-summary-of-data-in-gapminder">Get a summary of data in gapminder</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -264,19 +274,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  (Other)        :5586  </code></pre>
 </div>
 </div>
-<p>##Determine the type of object gapminder is</p>
+</section>
+<section id="determine-the-type-of-object-gapminder-is" class="level3">
+<h3 class="anchored" data-anchor-id="determine-the-type-of-object-gapminder-is">Determine the type of object gapminder is</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
 </div>
-<p><strong>PROCESSING DATA</strong></p>
-<p>##Assign African countries to a new object called africadata</p>
+</section>
+</section>
+<section id="processing-data" class="level2">
+<h2 class="anchored" data-anchor-id="processing-data"><strong>PROCESSING DATA</strong></h2>
+<section id="assign-african-countries-to-a-new-object-called-africadata" class="level3">
+<h3 class="anchored" data-anchor-id="assign-african-countries-to-a-new-object-called-africadata">Assign African countries to a new object called africadata</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>africadata<span class="ot">&lt;-</span>gapminder[gapminder<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Africa"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Run str and summary on africadata to check work ###2907 obs and 9 vars</p>
+</section>
+<section id="run-str-and-summary-on-africadata-to-check-work" class="level3">
+<h3 class="anchored" data-anchor-id="run-str-and-summary-on-africadata-to-check-work">Run str and summary on africadata to check work</h3>
+<section id="obs-and-9-vars" class="level4">
+<h4 class="anchored" data-anchor-id="obs-and-9-vars">(2907 obs and 9 vars)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(africadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -319,11 +339,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  (Other)                  :  0  </code></pre>
 </div>
 </div>
-<p>##Create new object that contains only infant_mortality and life_expectancy</p>
+</section>
+</section>
+<section id="create-new-object-that-contains-only-infant_mortality-and-life_expectancy" class="level3">
+<h3 class="anchored" data-anchor-id="create-new-object-that-contains-only-infant_mortality-and-life_expectancy">Create new object that contains only infant_mortality and life_expectancy</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>infmort_lifeexp <span class="ot">&lt;-</span> africadata[,<span class="fu">c</span>(<span class="st">"infant_mortality"</span>,<span class="st">"life_expectancy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Run str and summary on new infmort_lifeexp object ###2907 obs and 2 vars</p>
+</section>
+<section id="run-str-and-summary-on-new-infmort_lifeexp-object" class="level3">
+<h3 class="anchored" data-anchor-id="run-str-and-summary-on-new-infmort_lifeexp-object">Run str and summary on new infmort_lifeexp object</h3>
+<section id="obs-and-2-vars" class="level4">
+<h4 class="anchored" data-anchor-id="obs-and-2-vars">(2907 obs and 2 vars)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(infmort_lifeexp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -343,11 +370,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  NA's   :226                     </code></pre>
 </div>
 </div>
-<p>##Create new object that contains only population and life_expectancy</p>
+</section>
+</section>
+<section id="create-new-object-that-contains-only-population-and-life_expectancy" class="level3">
+<h3 class="anchored" data-anchor-id="create-new-object-that-contains-only-population-and-life_expectancy">Create new object that contains only population and life_expectancy</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_lifeexp <span class="ot">&lt;-</span> africadata[,<span class="fu">c</span>(<span class="st">"population"</span>,<span class="st">"life_expectancy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Run str and summary on new pop_lifeexp object ###2907 obs and 2 vars</p>
+</section>
+<section id="run-str-and-summary-on-new-pop_lifeexp-object" class="level3">
+<h3 class="anchored" data-anchor-id="run-str-and-summary-on-new-pop_lifeexp-object">Run str and summary on new pop_lifeexp object</h3>
+<section id="obs-and-2-vars-1" class="level4">
+<h4 class="anchored" data-anchor-id="obs-and-2-vars-1">(2907 obs and 2 vars)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pop_lifeexp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -367,8 +401,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  NA's   :51                         </code></pre>
 </div>
 </div>
-<p><strong>PLOTTING</strong></p>
-<p>##Plot life expectancy as a function of infant mortality</p>
+</section>
+</section>
+</section>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting"><strong>PLOTTING</strong></h2>
+<section id="plot-life-expectancy-as-a-function-of-infant-mortality" class="level3">
+<h3 class="anchored" data-anchor-id="plot-life-expectancy-as-a-function-of-infant-mortality">Plot life expectancy as a function of infant mortality</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> infmort_lifeexp) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(infant_mortality, life_expectancy), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
@@ -382,7 +421,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="coding_exercise_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>##Plot life expectancy as a function of population size, x-axis set to log scale ###Streaks of data likely clustering by year</p>
+</section>
+<section id="plot-life-expectancy-as-a-function-of-population-size-x-axis-set-to-log-scale" class="level3">
+<h3 class="anchored" data-anchor-id="plot-life-expectancy-as-a-function-of-population-size-x-axis-set-to-log-scale">Plot life expectancy as a function of population size, x-axis set to log scale</h3>
+<section id="streaks-of-data-likely-clustering-by-year" class="level4">
+<h4 class="anchored" data-anchor-id="streaks-of-data-likely-clustering-by-year">(Streaks of data likely clustering by year)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pop_lifeexp) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="fu">log10</span>(population), life_expectancy), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
@@ -396,8 +439,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="coding_exercise_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>MORE DATA PROCESSING</strong></p>
-<p>##Figure out which years have missing data for infant mortality ###Years 1960 through 1981, 2016</p>
+</section>
+</section>
+</section>
+<section id="more-data-processing" class="level2">
+<h2 class="anchored" data-anchor-id="more-data-processing"><strong>MORE DATA PROCESSING</strong></h2>
+<section id="figure-out-which-years-have-missing-data-for-infant-mortality" class="level3">
+<h3 class="anchored" data-anchor-id="figure-out-which-years-have-missing-data-for-infant-mortality">Figure out which years have missing data for infant mortality</h3>
+<section id="years-1960-through-1981-2016" class="level4">
+<h4 class="anchored" data-anchor-id="years-1960-through-1981-2016">(Years 1960 through 1981, 2016)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(africadata<span class="sc">$</span>infant_mortality)) <span class="co">#226 missing values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -417,12 +467,19 @@ FALSE  TRUE
    3    3    2    2    1    1   51 </code></pre>
 </div>
 </div>
-<p>##Create a new object with only the data for the year 2000 from africadata</p>
+</section>
+</section>
+<section id="create-a-new-object-with-only-the-data-for-the-year-2000-from-africadata" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-new-object-with-only-the-data-for-the-year-2000-from-africadata">Create a new object with only the data for the year 2000 from africadata</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>africadata_2000 <span class="ot">&lt;-</span> africadata <span class="sc">%&gt;%</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2000"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Run str and summary on new africadata_2000 object ###51 obs, 9 vars</p>
+</section>
+<section id="run-str-and-summary-on-new-africadata_2000-object" class="level3">
+<h3 class="anchored" data-anchor-id="run-str-and-summary-on-new-africadata_2000-object">Run str and summary on new africadata_2000 object</h3>
+<section id="obs-9-vars" class="level4">
+<h4 class="anchored" data-anchor-id="obs-9-vars">(51 obs, 9 vars)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(africadata_2000)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -465,8 +522,13 @@ FALSE  TRUE
  (Other)                  : 0  </code></pre>
 </div>
 </div>
-<p><strong>MORE PLOTTING</strong></p>
-<p>##Plot life expectancy as a function of infant mortality (year 2000 only)</p>
+</section>
+</section>
+</section>
+<section id="more-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="more-plotting"><strong>MORE PLOTTING</strong></h2>
+<section id="plot-life-expectancy-as-a-function-of-infant-mortality-year-2000-only" class="level3">
+<h3 class="anchored" data-anchor-id="plot-life-expectancy-as-a-function-of-infant-mortality-year-2000-only">Plot life expectancy as a function of infant mortality (year 2000 only)</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> africadata_2000) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(infant_mortality, life_expectancy), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
@@ -477,7 +539,9 @@ FALSE  TRUE
 <p><img src="coding_exercise_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>##Plot life expectancy as a function of population size, x-axis set to log scale</p>
+</section>
+<section id="plot-life-expectancy-as-a-function-of-population-size-x-axis-set-to-log-scale-1" class="level3">
+<h3 class="anchored" data-anchor-id="plot-life-expectancy-as-a-function-of-population-size-x-axis-set-to-log-scale-1">Plot life expectancy as a function of population size, x-axis set to log scale</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> africadata_2000) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="fu">log10</span>(population), life_expectancy), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
@@ -488,16 +552,24 @@ FALSE  TRUE
 <p><img src="coding_exercise_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>A SIMPLE FIT</strong></p>
-<p>##Using year 2000 data, fit life expectancy as the outcome and infant mortality as the predictor</p>
+</section>
+</section>
+<section id="a-simple-fit" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-fit"><strong>A SIMPLE FIT</strong></h2>
+<section id="using-year-2000-data-fit-life-expectancy-as-the-outcome-and-infant-mortality-as-the-predictor" class="level3">
+<h3 class="anchored" data-anchor-id="using-year-2000-data-fit-life-expectancy-as-the-outcome-and-infant-mortality-as-the-predictor">Using year 2000 data, fit life expectancy as the outcome and infant mortality as the predictor</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>fit1_lifeexp_infmort <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy<span class="sc">~</span>infant_mortality, <span class="at">data =</span> africadata_2000)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Using year 2000 data, fit life expectancy as the outcome and population as the predictor</p>
+</section>
+<section id="using-year-2000-data-fit-life-expectancy-as-the-outcome-and-population-as-the-predictor" class="level3">
+<h3 class="anchored" data-anchor-id="using-year-2000-data-fit-life-expectancy-as-the-outcome-and-population-as-the-predictor">Using year 2000 data, fit life expectancy as the outcome and population as the predictor</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fit2_lifeexp_pop <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy<span class="sc">~</span>population, <span class="at">data =</span> africadata_2000)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Apply summary command to both models; based on p-values what do you conclude?</p>
+</section>
+<section id="apply-summary-command-to-both-models-based-on-p-values-what-do-you-conclude" class="level3">
+<h3 class="anchored" data-anchor-id="apply-summary-command-to-both-models-based-on-p-values-what-do-you-conclude">Apply summary command to both models; based on p-values what do you conclude?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1_lifeexp_infmort) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -542,11 +614,92 @@ Multiple R-squared:  0.005176,  Adjusted R-squared:  -0.01513
 F-statistic: 0.2549 on 1 and 49 DF,  p-value: 0.6159</code></pre>
 </div>
 </div>
+<section id="in-model-1-p-value-2.83e-08-significant-relationship-between-life-expectancy-and-infant-mortality-as-infant-mortality-increases-life-expectancy-decreases.-in-model-2-p-value-0.616-no-significant-relationship-between-life-expectancy-and-population-size." class="level5">
+<h5 class="anchored" data-anchor-id="in-model-1-p-value-2.83e-08-significant-relationship-between-life-expectancy-and-infant-mortality-as-infant-mortality-increases-life-expectancy-decreases.-in-model-2-p-value-0.616-no-significant-relationship-between-life-expectancy-and-population-size.">In model 1, p-value = 2.83e-08; significant relationship between life expectancy and infant mortality (as infant mortality increases, life expectancy decreases). In model 2, p-value = 0.616; no significant relationship between life expectancy and population size.</h5>
+<p><strong>——————————————————</strong></p>
+<p><strong>SECTION ADDED BY IRENE CAVROS</strong></p>
+<p><strong>——————————————————</strong></p>
+</section>
+</section>
+<section id="additional-data-plots" class="level3">
+<h3 class="anchored" data-anchor-id="additional-data-plots">Additional data plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#In model 1, p-value = 2.83e-08; significant relationship between life expectancy and infant mortality (as infant mortality increases, life expectancy decreases). In model 2, p-value = 0.616; no significant relationship between life expectancy and population size.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot life expectancy as a function of GDP (year 2000 only)</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> africadata_2000) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(gdp, life_expectancy), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy and GDP in African Countries, Year 2000 Only"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Life Expectancy (Years)"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"GDP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="coding_exercise_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#barplot of infant mortality in the year 2000 by country</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#nicole commented out, too many countries for this plot</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(data=africadata_2000, aes (x=country, y=infant_mortality))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fit-another-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-another-model">Fit another model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gdp_le_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy<span class="sc">~</span>gdp, <span class="at">data =</span> africadata_2000)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gdp_le_fit) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = life_expectancy ~ gdp, data = africadata_2000)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.488  -4.316  -1.890   4.272  17.479 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 5.501e+01  1.247e+00  44.106   &lt;2e-16 ***
+gdp         1.168e-10  4.640e-11   2.516   0.0152 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.043 on 49 degrees of freedom
+Multiple R-squared:  0.1144,    Adjusted R-squared:  0.09632 
+F-statistic: 6.329 on 1 and 49 DF,  p-value: 0.0152</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fit results in table</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(gdp_le_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept) 5.50e+ 1  1.25e+ 0     44.1  4.21e-41
+2 gdp         1.17e-10  4.64e-11      2.52 1.52e- 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(gdp_le_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 × 8
+   life_expectancy          gdp .fitted .resid   .hat .sigma  .cooksd .std.resid
+             &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+ 1            73.3 54790058957     61.4  11.9  0.0818   7.93 0.106         1.54 
+ 2            52.3  9129180361     56.1  -3.78 0.0198   8.11 0.00228      -0.475
+ 3            57.2  2254838685     55.3   1.92 0.0225   8.12 0.000673      0.242
+ 4            47.6  5632391130     55.7  -8.07 0.0208   8.04 0.0109       -1.01 
+ 5            52.6  2610945549     55.3  -2.72 0.0223   8.12 0.00133      -0.342
+ 6            46.7   835334807.    55.1  -8.41 0.0234   8.03 0.0134       -1.06 
+ 7            54.3 10075040331     56.2  -1.89 0.0197   8.12 0.000566     -0.237
+ 8            68.4   539227053.    55.1  13.3  0.0236   7.89 0.0340        1.68 
+ 9            45.3   959413051.    55.1  -9.83 0.0233   8.00 0.0183       -1.24 
+10            51.5  1385050964     55.2  -3.68 0.0231   8.11 0.00252      -0.462
+# … with 41 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(gdp_le_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵
+    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+1   0.114  0.0963  8.04    6.33  0.0152     1  -178.  361.  367.   3170.      49
+# … with 1 more variable: nobs &lt;int&gt;, and abbreviated variable names
+#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual</code></pre>
+</div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
