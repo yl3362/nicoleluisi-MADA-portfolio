@@ -173,11 +173,14 @@ resulttable=readRDS(here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.r
 knitr::kable(resulttable)
 ```
 
+
+
 **-------------------**THIS SECTION ADDED BY SHIWANI SAPKOTA**---------------------**
 
 **LOADING THE REQUIRED PACKAGES**
 
 ```{r}
+#| warning: false
 library(here)
 library(dplyr)
 library(ggplot2)

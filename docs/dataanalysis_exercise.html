@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nicole Luisi">
-<meta name="dcterms.date" content="2023-01-31">
+<meta name="dcterms.date" content="2023-02-03">
 
 <title>Nicole Luisi: Data Analysis Portfolio - Module 4: Data Analysis Exercise</title>
 <style>
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 31, 2023</p>
+      <p class="date">February 3, 2023</p>
     </div>
   </div>
     
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>
   &lt; 90% 90%-91%   92% + 
-      6      30      60 </code></pre>
+      6      31      59 </code></pre>
 </div>
 </div>
 </section>
@@ -335,35 +335,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Deaths"</span>) <span class="sc">+</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Deaths by Select Cause, Year 2021"</span>) <span class="sc">+</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ss2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(final_death_2015_2022, year <span class="sc">==</span> <span class="st">"2020"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(month, drug_overdose, intentional_self_harm_suicide, assault_homicide) <span class="sc">%&gt;%</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>month)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ss2, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1d95bb"</span>, <span class="st">"#0e9731"</span>, <span class="st">"#FC4E07"</span>)) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month of Year, 2020"</span>) <span class="sc">+</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Deaths"</span>) <span class="sc">+</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Deaths by Select Cause, Year 2020"</span>) <span class="sc">+</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>ss3 <span class="ot">&lt;-</span> <span class="fu">subset</span>(final_death_2015_2022, year <span class="sc">==</span> <span class="st">"2019"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(month, drug_overdose, intentional_self_harm_suicide, assault_homicide) <span class="sc">%&gt;%</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>month)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ss3, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1d95bb"</span>, <span class="st">"#0e9731"</span>, <span class="st">"#FC4E07"</span>)) <span class="sc">+</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month of Year, 2019"</span>) <span class="sc">+</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Deaths"</span>) <span class="sc">+</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Deaths by Select Cause, Year 2019"</span>) <span class="sc">+</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p2, p1, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ss2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(final_death_2015_2022, year <span class="sc">==</span> <span class="st">"2020"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(month, drug_overdose, intentional_self_harm_suicide, assault_homicide) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>month)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ss2, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1d95bb"</span>, <span class="st">"#0e9731"</span>, <span class="st">"#FC4E07"</span>)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month of Year, 2020"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Deaths"</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Deaths by Select Cause, Year 2020"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ss3 <span class="ot">&lt;-</span> <span class="fu">subset</span>(final_death_2015_2022, year <span class="sc">==</span> <span class="st">"2019"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(month, drug_overdose, intentional_self_harm_suicide, assault_homicide) <span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>month)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ss3, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1d95bb"</span>, <span class="st">"#0e9731"</span>, <span class="st">"#FC4E07"</span>)) <span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month of Year, 2019"</span>) <span class="sc">+</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Deaths"</span>) <span class="sc">+</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Deaths by Select Cause, Year 2019"</span>) <span class="sc">+</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">1</span>)) </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p2, p1, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dataanalysis_exercise_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -374,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="save-file-as-rds-for-group-work"><strong>Save File as RDS for Group Work</strong></h3>
 <p><em>Commenting out RDS creation so this is not overwritten</em> RDS file <code>final_death_2015_2022.rds</code> located in <code>\nicoleluisi-MADA-portfolio\Mod_4_Exercise\finaldata</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(final_death_2015_2022, file = (here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.rds")))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(final_death_2015_2022, file = (here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.rds")))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="summary-table" class="level6">
 <h6 class="anchored" data-anchor-id="summary-table">Summary table</h6>
@@ -3133,6 +3136,243 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<p><strong>——————-</strong>THIS SECTION ADDED BY SHIWANI SAPKOTA<strong>———————</strong></p>
+<p><strong>LOADING THE REQUIRED PACKAGES</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>READING AND LOOKING THE RDS DATA FILE</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading the cleaned rds data file</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>deathdata2015_2022 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"Mod_4_Exercise"</span>, <span class="st">"finaldata"</span>, <span class="st">"final_death_2015_2022.rds"</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Looking at the data</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(deathdata2015_2022)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 96
+Columns: 26
+$ year                          &lt;int&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015…
+$ month                         &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1…
+$ all_cause                     &lt;int&gt; 265355, 227047, 242712, 224423, 223600, …
+$ natural_cause                 &lt;int&gt; 247269, 211028, 224708, 207336, 205087, …
+$ septicemia                    &lt;int&gt; 4194, 3559, 3723, 3342, 3204, 3019, 3151…
+$ malignant_neoplasms           &lt;int&gt; 52346, 46226, 51192, 48745, 50072, 48055…
+$ diabetes_mellitus             &lt;int&gt; 8053, 6809, 7106, 6568, 6479, 6076, 6251…
+$ alzheimer_disease             &lt;int&gt; 11638, 9477, 9790, 8859, 8674, 8109, 836…
+$ influenza_and_pneumonia       &lt;int&gt; 10005, 6402, 5601, 4878, 4109, 3679, 347…
+$ chronic_lower_respiratory     &lt;int&gt; 16769, 14196, 15185, 13982, 13376, 11946…
+$ other_diseases_of_respiratory &lt;int&gt; 3797, 3245, 3668, 3306, 3109, 2983, 2906…
+$ nephritis_nephrotic_syndrome  &lt;int&gt; 4979, 4344, 4597, 4247, 4046, 3881, 3935…
+$ symptoms_signs_and_abnormal   &lt;int&gt; 3005, 2578, 2674, 2551, 2489, 2489, 2529…
+$ diseases_of_heart             &lt;int&gt; 63190, 54374, 57615, 52961, 52243, 48672…
+$ cerebrovascular_diseases      &lt;int&gt; 13576, 11679, 12546, 11343, 11445, 10897…
+$ accidents_unintentional       &lt;int&gt; 12311, 11040, 12028, 11419, 12324, 12176…
+$ motor_vehicle_accidents       &lt;int&gt; 2754, 2350, 2764, 2830, 3339, 3222, 3530…
+$ intentional_self_harm_suicide &lt;int&gt; 3618, 3215, 3935, 3726, 3966, 3785, 3944…
+$ assault_homicide              &lt;int&gt; 1437, 1124, 1365, 1297, 1531, 1546, 1676…
+$ drug_overdose                 &lt;int&gt; 4354, 4087, 4583, 4281, 4462, 4176, 4497…
+$ covid_19_multiple_cause_of    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ covid_19_underlying_cause     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ date                          &lt;chr&gt; "1/1/2015", "2/1/2015", "3/1/2015", "4/1…
+$ month_abrv                    &lt;chr&gt; "Jan", "Feb", "Mar", "Apr", "May", "Jun"…
+$ natural_cause_prop            &lt;dbl&gt; 93.2, 92.9, 92.6, 92.4, 91.7, 91.4, 91.1…
+$ natural_cause_prop_fct        &lt;fct&gt; 92% +, 92% +, 92% +, 92% +, 92% +, 92% +…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deathdata2015_2022, <span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year month all_cause natural_cause septicemia malignant_neoplasms
+1  2015     1    265355        247269       4194               52346
+2  2015     2    227047        211028       3559               46226
+3  2015     3    242712        224708       3723               51192
+4  2015     4    224423        207336       3342               48745
+5  2015     5    223600        205087       3204               50072
+6  2015     6    211175        193014       3019               48055
+7  2015     7    216951        197673       3151               50112
+8  2015     8    214404        195312       3236               50196
+9  2015     9    209905        191754       3123               48835
+10 2015    10    223535        204815       3390               50889
+   diabetes_mellitus alzheimer_disease influenza_and_pneumonia
+1               8053             11638                   10005
+2               6809              9477                    6402
+3               7106              9790                    5601
+4               6568              8859                    4878
+5               6479              8674                    4109
+6               6076              8109                    3679
+7               6251              8361                    3476
+8               6173              8346                    3439
+9               6012              8419                    3378
+10              6566              9368                    3883
+   chronic_lower_respiratory other_diseases_of_respiratory
+1                      16769                          3797
+2                      14196                          3245
+3                      15185                          3668
+4                      13982                          3306
+5                      13376                          3109
+6                      11946                          2983
+7                      11473                          2906
+8                      10768                          2877
+9                      10729                          2844
+10                     11675                          3057
+   nephritis_nephrotic_syndrome symptoms_signs_and_abnormal diseases_of_heart
+1                          4979                        3005             63190
+2                          4344                        2578             54374
+3                          4597                        2674             57615
+4                          4247                        2551             52961
+5                          4046                        2489             52243
+6                          3881                        2489             48672
+7                          3935                        2529             50265
+8                          3797                        2464             48945
+9                          3781                        2518             47849
+10                         3927                        2733             51290
+   cerebrovascular_diseases accidents_unintentional motor_vehicle_accidents
+1                     13576                   12311                    2754
+2                     11679                   11040                    2350
+3                     12546                   12028                    2764
+4                     11343                   11419                    2830
+5                     11445                   12324                    3339
+6                     10897                   12176                    3222
+7                     11218                   12941                    3530
+8                     10964                   12803                    3642
+9                     10826                   12293                    3372
+10                    11792                   12845                    3550
+   intentional_self_harm_suicide assault_homicide drug_overdose
+1                           3618             1437          4354
+2                           3215             1124          4087
+3                           3935             1365          4583
+4                           3726             1297          4281
+5                           3966             1531          4462
+6                           3785             1546          4176
+7                           3944             1676          4497
+8                           3912             1650          4492
+9                           3578             1610          4481
+10                          3688             1486          4546
+   covid_19_multiple_cause_of covid_19_underlying_cause      date month_abrv
+1                          NA                        NA  1/1/2015        Jan
+2                          NA                        NA  2/1/2015        Feb
+3                          NA                        NA  3/1/2015        Mar
+4                          NA                        NA  4/1/2015        Apr
+5                          NA                        NA  5/1/2015        May
+6                          NA                        NA  6/1/2015        Jun
+7                          NA                        NA  7/1/2015        Jul
+8                          NA                        NA  8/1/2015        Aug
+9                          NA                        NA  9/1/2015        Sep
+10                         NA                        NA 10/1/2015        Oct
+   natural_cause_prop natural_cause_prop_fct
+1                93.2                  92% +
+2                92.9                  92% +
+3                92.6                  92% +
+4                92.4                  92% +
+5                91.7                  92% +
+6                91.4                  92% +
+7                91.1                  92% +
+8                91.1                  92% +
+9                91.4                  92% +
+10               91.6                  92% +</code></pre>
+</div>
+</div>
+<p><strong>DATA EXPLORATION AND VISUALIZATION</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's look at which year had the highest and lowest counts of deaths from all cause of mortality during 2015-2022</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>allcause_deaths <span class="ot">&lt;-</span> deathdata2015_2022 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">allcausedeaths_years =</span> <span class="fu">sum</span>(all_cause, <span class="at">na.rm=</span>T))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>allcause_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+   year allcausedeaths_years
+  &lt;int&gt;                &lt;int&gt;
+1  2015              2712630
+2  2016              2744248
+3  2017              2813503
+4  2018              2839205
+5  2019              2854838
+6  2020              3390079
+7  2021              3471732
+8  2022              3239275</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>allcause_deaths <span class="ot">&lt;-</span> allcause_deaths <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">allcausedeaths_years</span><span class="st">`</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>allcause_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+   year allcausedeaths_years
+  &lt;int&gt;                &lt;int&gt;
+1  2021              3471732
+2  2020              3390079
+3  2022              3239275
+4  2019              2854838
+5  2018              2839205
+6  2017              2813503
+7  2016              2744248
+8  2015              2712630</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's look at the trend of deaths from diabetes mellitus over the years 2015-2022</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an object `diabetestrend` that has the total count of deaths from diabetes mellitus in each years of 2015-2022</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>diabetestrend <span class="ot">&lt;-</span> deathdata2015_2022 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarize</span>(<span class="at">diabetes_mellitus_deaths =</span> <span class="fu">sum</span>(diabetes_mellitus, <span class="at">na.rm=</span>T))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>diabetestrend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+   year diabetes_mellitus_deaths
+  &lt;int&gt;                    &lt;int&gt;
+1  2015                    79535
+2  2016                    80058
+3  2017                    83564
+4  2018                    84946
+5  2019                    87647
+6  2020                   102308
+7  2021                   103419
+8  2022                    99230</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the data to visualize the deaths trend from diabetes mellitus during 2015-2022</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diabetestrend, (<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> diabetes_mellitus_deaths))) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deaths trend from diabetes mellitus during 2015-2022"</span>, </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Deaths from diabetes mellitus"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2015</span>, <span class="dv">2022</span>, <span class="at">by=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>), <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dataanalysis_exercise_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets look at the deaths from influenza and pneumonia for 12 months of the year 2022</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>influenza_pneumonia2022 <span class="ot">&lt;-</span> deathdata2015_2022 <span class="sc">%&gt;%</span> <span class="fu">select</span>(year, month, influenza_and_pneumonia) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>influenza_pneumonia2022</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year month influenza_and_pneumonia
+1  2022     1                    4916
+2  2022     2                    3549
+3  2022     3                    3487
+4  2022     4                    3295
+5  2022     5                    3413
+6  2022     6                    3149
+7  2022     7                    3059
+8  2022     8                    2885
+9  2022     9                    2935
+10 2022    10                    3327
+11 2022    11                    4662
+12 2022    12                    7101</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets plot the above data</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> influenza_pneumonia2022, (<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> influenza_and_pneumonia))) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"brown"</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deaths from influenza and pneumonia in 2022"</span>, </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Months of 2022"</span>, <span class="at">y =</span> <span class="st">"Deaths from influenza and pneumonia"</span>) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>), <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dataanalysis_exercise_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
