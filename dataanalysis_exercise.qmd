@@ -7,21 +7,18 @@ output: html_document
 
 This Quarto file was developed for the MADA Module 4 data analysis exercise.
 
-**Description**: This analysis will explore mortality counts by month, year, and cause of death in the US. 
+**Description**: This analysis will explore mortality counts by month, year, and cause of death in the US.
 
 **Data Source**: CDC - [Select cause mortality data from 2014-2019](https://data.cdc.gov/NCHS/Monthly-Counts-of-Deaths-by-Select-Causes-2014-201/bxq8-mugm) has been combined with [provisional select cause mortality data from 2020-2023](https://data.cdc.gov/NCHS/Monthly-Provisional-Counts-of-Deaths-by-Select-Cau/9dzk-mvmi).
 
-**Final Data File**: The RDS file `final_death_2015_2022.rds` is located in `\nicoleluisi-MADA-portfolio\Mod_4_Exercise\finaldata` and contains data from 2015 through 2022; rows are structured by month and year (each row contains mortality counts for one month (per year) for several causes of death. 
+**Final Data File**: The RDS file `final_death_2015_2022.rds` is located in `\nicoleluisi-MADA-portfolio\Mod_4_Exercise\finaldata` and contains data from 2015 through 2022; rows are structured by month and year (each row contains mortality counts for one month (per year) for several causes of death.
 
-**Variables**: Categorical variables include *month*, *year*, and *natural_cause_prop_fct* (derived as a factor representing the proportion of all deaths due to natural causes). 
-Numeric count variables are available for several causes of death by month/year: *all_cause*, *natural_cause*, *septicemia*, *malignant_neoplasm*, *diabetes_mellitus*, *alzheimer_disease*, *influenza_and_pneumonia*, *chronic_lower_respiratory*, *other_diseases_of_respiratory*, *nephritis_nephrotic_syndrome*, *symptoms_signs_and_abnormal*, *diseases_of_heart*, *cerebrovascular_diseases*, *accidents_unintentional*, *motor_vehicle_accidents*, *intentional_self_harm_suicide*, *assault_homicide*, *drug_overdose*, *covid_19_multiple_cause_of*, and *covid_19_underlying_cause*. 
-Variable names are explanatory; user can continue with monthly counts or collapse to annual or other combinations. 
-**Note**: *COVID-19 variables are NA for years prior to 2020.*
-
+**Variables**: Categorical variables include *month*, *year*, and *natural_cause_prop_fct* (derived as a factor representing the proportion of all deaths due to natural causes). Numeric count variables are available for several causes of death by month/year: *all_cause*, *natural_cause*, *septicemia*, *malignant_neoplasm*, *diabetes_mellitus*, *alzheimer_disease*, *influenza_and_pneumonia*, *chronic_lower_respiratory*, *other_diseases_of_respiratory*, *nephritis_nephrotic_syndrome*, *symptoms_signs_and_abnormal*, *diseases_of_heart*, *cerebrovascular_diseases*, *accidents_unintentional*, *motor_vehicle_accidents*, *intentional_self_harm_suicide*, *assault_homicide*, *drug_overdose*, *covid_19_multiple_cause_of*, and *covid_19_underlying_cause*. Variable names are explanatory; user can continue with monthly counts or collapse to annual or other combinations. **Note**: *COVID-19 variables are NA for years prior to 2020.*
 
 ### **Load and Process Data**
 
 ##### **Install and load required packages**
+
 ```{r}
 #| warning: false
 #Commented out after initial install
@@ -32,6 +29,7 @@ library("gridExtra")
 ```
 
 ##### **Load data**
+
 ```{r}
 # Monthly Counts of Deaths by Select Causes, 2014-2019
 death_2014_2019 <- read.csv("https://data.cdc.gov/resource/bxq8-mugm.csv")
@@ -42,6 +40,7 @@ death_2020_2023 <- read.csv("https://data.cdc.gov/resource/9dzk-mvmi.csv")
 ##### **Prepare combined file**
 
 ###### Check variables
+
 ```{r}
 #| output: false
 names(death_2014_2019)
@@ -51,6 +50,7 @@ head(death_2020_2023)
 ```
 
 ###### Subset variables
+
 ```{r}
 # Subset variables 2014-2019
 death_2014_2019_v2 <- death_2014_2019 %>% select(year, month, all_cause, natural_cause, septicemia, malignant_neoplasms, diabetes_mellitus, alzheimer_disease, influenza_and_pneumonia, chronic_lower_respiratory, other_diseases_of_respiratory, nephritis_nephrotic_syndrom, symptoms_signs_and_abnormal, diseases_of_heart, cerebrovascular_diseases, accidents_unintentional, motor_vehicle_accidents, intentional_self_harm_suicide, assault_homicide, drug_overdose)
@@ -62,7 +62,8 @@ death_2014_2019_v2 <- rename(death_2014_2019_v2, nephritis_nephrotic_syndrome = 
 death_2020_2023_v2 <- death_2020_2023 %>% select(year, month, all_cause, natural_cause, septicemia, malignant_neoplasms, diabetes_mellitus, alzheimer_disease, influenza_and_pneumonia, chronic_lower_respiratory, other_diseases_of_respiratory, nephritis_nephrotic_syndrome, symptoms_signs_and_abnormal, diseases_of_heart, cerebrovascular_diseases, accidents_unintentional, motor_vehicle_accidents, intentional_self_harm_suicide, assault_homicide, drug_overdose, covid_19_multiple_cause_of, covid_19_underlying_cause)   
 ```
 
-###### Concatenate all years and sort 
+###### Concatenate all years and sort
+
 ```{r}
 # Concatenate all years of data
 death_2014_2023 <- bind_rows(death_2014_2019_v2, death_2020_2023_v2)
@@ -72,7 +73,8 @@ death_2014_2023 <- death_2014_2023 %>%
   arrange(year, month)
 ```
 
-######  Review combined file
+###### Review combined file
+
 ```{r}
 #| output: false
 glimpse(death_2014_2023)
@@ -80,7 +82,8 @@ summary(death_2014_2023)
 head(death_2014_2023)
 ```
 
-###### Clean and prepare subset for analysis 
+###### Clean and prepare subset for analysis
+
 ```{r}
 # Limit period from 2015 through 2022
 final_death_2015_2022 <- death_2014_2023 %>%
@@ -107,6 +110,7 @@ table(final_death_2015_2022$natural_cause_prop_fct)
 ### **Explore Data**
 
 ###### Compare plots with select causes of death by month for a few years
+
 ```{r}
 # Plot a subset of the data
 ss1 <- subset(final_death_2015_2022, year == "2021") %>%
@@ -152,18 +156,88 @@ grid.arrange(p3, p2, p1, ncol = 1)
 ```
 
 ### **Save File as RDS for Group Work**
-*Commenting out RDS creation so this is not overwritten*
-RDS file `final_death_2015_2022.rds` located in `\nicoleluisi-MADA-portfolio\Mod_4_Exercise\finaldata`
+
+*Commenting out RDS creation so this is not overwritten* RDS file `final_death_2015_2022.rds` located in `\nicoleluisi-MADA-portfolio\Mod_4_Exercise\finaldata`
+
 ```{r}
 #saveRDS(final_death_2015_2022, file = (here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.rds")))
 ```
 
-
 ###### Summary table
+
 ```{r}
 #| label: tbl-summarytable
 #| tbl-cap: "Data summary table."
 #| echo: FALSE
 resulttable=readRDS(here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.rds"))
 knitr::kable(resulttable)
+```
+
+**-------------------**THIS SECTION ADDED BY SHIWANI SAPKOTA**---------------------**
+
+**LOADING THE REQUIRED PACKAGES**
+
+```{r}
+library(here)
+library(dplyr)
+library(ggplot2)
+```
+
+**READING AND LOOKING THE RDS DATA FILE**
+
+```{r}
+# Reading the cleaned rds data file
+deathdata2015_2022 <- readRDS(here("Mod_4_Exercise", "finaldata", "final_death_2015_2022.rds"))
+
+# Looking at the data
+glimpse(deathdata2015_2022)
+head(deathdata2015_2022, n = 10)
+```
+
+**DATA EXPLORATION AND VISUALIZATION**
+
+```{r}
+# Let's look at which year had the highest and lowest counts of deaths from all cause of mortality during 2015-2022
+allcause_deaths <- deathdata2015_2022 %>% group_by(year) %>% summarize(allcausedeaths_years = sum(all_cause, na.rm=T))
+allcause_deaths
+
+allcause_deaths <- allcause_deaths %>% arrange(desc(`allcausedeaths_years`))
+allcause_deaths
+```
+
+```{r}
+# Let's look at the trend of deaths from diabetes mellitus over the years 2015-2022
+
+# Creating an object `diabetestrend` that has the total count of deaths from diabetes mellitus in each years of 2015-2022
+diabetestrend <- deathdata2015_2022 %>% group_by(year) %>%
+ summarize(diabetes_mellitus_deaths = sum(diabetes_mellitus, na.rm=T))
+diabetestrend
+
+# Plotting the data to visualize the deaths trend from diabetes mellitus during 2015-2022
+ggplot(data = diabetestrend, (aes(x = year, y = diabetes_mellitus_deaths))) +
+  theme_classic() +
+  geom_point() +
+  geom_line() +
+  labs(title = "Deaths trend from diabetes mellitus during 2015-2022", 
+       x = "Year", y = "Deaths from diabetes mellitus") +
+  scale_x_continuous(breaks = seq(2015, 2022, by=1)) +
+  theme(axis.text = element_text(face="bold"), plot.title = element_text(face = "bold", hjust = 0.5, size = 14),
+        axis.title = element_text(face = "bold", hjust = 0.5, size = 14))
+```
+
+```{r}
+# Lets look at the deaths from influenza and pneumonia for 12 months of the year 2022
+influenza_pneumonia2022 <- deathdata2015_2022 %>% select(year, month, influenza_and_pneumonia) %>% filter(year == 2022)
+influenza_pneumonia2022
+
+# Lets plot the above data
+ggplot(data = influenza_pneumonia2022, (aes(x = month, y = influenza_and_pneumonia))) +
+  theme_classic() +
+  geom_point(size = 5, color = "red", alpha = 0.5) + 
+  geom_line(linewidth = 0.8, color = "brown", linetype = 2) +
+  labs(title = "Deaths from influenza and pneumonia in 2022", 
+       x = "Months of 2022", y = "Deaths from influenza and pneumonia") +
+  scale_x_continuous(breaks = seq(1, 12, by=1)) +
+  theme(axis.text = element_text(face="bold"), plot.title = element_text(face = "bold", hjust = 0.5, size = 14),
+        axis.title = element_text(face = "bold", hjust = 0.5, size = 14))
 ```
