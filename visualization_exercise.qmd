@@ -1,8 +1,112 @@
 ---
 title: "Visualization Exercise"
+author: "Nicole Luisi"
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: FALSE
 ---
 
-Placeholder file for the future visualization exercise.
+#### **Overview**
+
+For this exercise, I decided to recreate the graphic in [this CNBC article](https://www.cnbc.com/2022/12/09/map-of-starbucks-stores-that-voted-to-unionize.html)
+
+In the article, the graphic is interactive, but here is a static image for reference:
+
+![](ex 5 static image of map.jpg){fig-align="center"}
+
+#### **Load Packages**
+
+```{r}
+#| warning: false
+library(here)
+library(dplyr)
+library(plotly)
+```
+
+#### **Load Data**
+
+*Note: The original data source linked to the figure was a [Google Sheet](https://docs.google.com/spreadsheets/d/11b4c6hOR-LmxNXQc2Q--Am4NiVAIAGzIBCPfDOwDU44/edit#gid=980621332) spreadsheet which could have been read in directly, however it would have required some personal account info that would have to be hidden on Githib. There were also some other issues with this dataset that required an intermediate step (explained in the next section) so I am just loading my final CSV download here.* 
+
+```{r}
+starbucks <- read.csv(here("data", "geocoded_by_geoapify-2_6_2023, 10 04 29 PM.csv"))
+```
+
+#### **Clean and Prepare Data**
+
+One issue with the source dataset was that although it was clean, it did not include geocoding for the addresses. The address was stored in a single character field, and although it was clean and ready to use, it needed to be geocoded with something such as latitude and longitude in order to create a comparable map. 
+
+Initially, I was going to use the Google API to do this geodocding directly with `ggmap::geocode`, however I would have needed to include my API key in this public code (and I would have needed to add a credit card to my account to use this API feature). Due to these limitations, I decided to use a [free web tool](https://www.geoapify.com/) to geocode the addresses first. I input the original data to the tool, and used the revised CSV it provided with latitude and longitude added here.
+
+```{r}
+# Check current variable names
+#names(starbucks)
+
+# Rename variables as required for mapping function
+starbucks <- rename(starbucks, "longitude"="lon", "latitude"="lat")
+
+# Check updated variable names
+#names(starbucks)
+
+# Review freq table of store status variable used to color code the map points 
+table(starbucks$original_Store.Status, useNA = "always")
+
+# Looks like there were originally 5 categories but they collapsed these to 3 for the map to do the color coding, so I will recreate this collapsed variable as a new factor variable
+starbucks$status <- ifelse (starbucks$original_Store.Status=="",NA,
+                    ifelse (starbucks$original_Store.Status=="Union Win", 1,
+                    ifelse (starbucks$original_Store.Status=="Union Loss", 2,
+                    ifelse (starbucks$original_Store.Status=="Store Closed", 2, 3))))
+# Labeling these as they appear in the map legend
+starbucks$status <- factor(starbucks$status, levels = c(1,2,3), 
+                           labels = c("Union win (262)", "Union loss or store closure (65)", "Outcome pending or contested (32)"))
+
+# Parse date portion of filing date time stamp
+starbucks$petition_date <- gsub(",.*$", "", starbucks$original_Petition.File.Date..from.Store.Name.)
+# Create concatenated string of text for hover to match info on website hover
+# They have it in sentence format: Petition filed DATE. Outcome.
+starbucks$hover_string <- paste("Petition filed ", starbucks$petition_date, ". ", starbucks$original_Store.Status, ".", sep = "", collapse=NULL)
+
+# Check new 3-cat variable against original 5-cat and make sure totals match the online map
+table(starbucks$status, starbucks$original_Store.Status)
+#(starbucks$status)
+```
+
+Next, I used an online tool to grab the hexcodes for the colors on the webpage. It didn't do a great job, so I ended up just choosing color codes I thought were close enough.
+
+*Map background: #edeff3; Map lines: #a2a2a2; Union win: #008456; Union loss: #cc00cc; Outcome pending: #ffbc05*
+
+#### **Create Map**
+
+```{r}
+# Prep geo 
+geog <- list(scope = 'usa',
+             projection = list(type = 'albers usa'),
+             showland = TRUE, 
+             landcolor = toRGB("gray95"), subunitcolor = toRGB("gray85"), countrycolor = toRGB("gray85"),
+             countrywidth = 0.5, subunitwidth = 0.5)
+
+# List of color names 
+r_color <- colors()
+# Create color palette for pins 
+cols <- c("#008456","#cc00cc", "#ffbc05")
+
+# Plotting
+m1 <- plot_geo(starbucks, lat = starbucks$latitude, lon = starbucks$longitude)
+
+# Constructing hover text and other details
+m1 <- m1 %>% add_markers(
+  text = ~paste(original_Store.name, original_Address, original_City, original_State, hover_string, sep = "<br />"),
+  color = ~starbucks$status, colors= cols, symbol = I("circle"), size = I(6), hoverinfo = "text"
+)
+
+m1 <- m1 %>% layout(
+  title = '<b>Unionizing at Starbucks</b> <br /> (hover for info) <br /> More than 250 stores across nearly 40 states have voted to unionize since 2021.', geo = geog
+)
+m1 <- m1 %>% layout(legend = list(orientation = 'h', x=0.1, y=0.9))
+
+# View map
+m1
+```
+
+
+Overall, it looks pretty close. The main issue I had was getting the formatting of the interactive hover text to match the version on the website. Couldn't get the white background and selective color-coding of words to work, but if I have time later I will come back to it. I was able to get the info inside the hovers to match to what is displayed online, it's just the formatting of the hover that isn't an exact match. 
