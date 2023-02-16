@@ -5,4 +5,120 @@ output:
     toc: FALSE
 ---
 
-Placeholder file for the future Tidy Tuesday exercise.
+#### **Install and load required packages**
+
+```{r}
+#| warning: false
+library("dplyr")
+library("ggplot2")
+library("stringr")
+```
+
+#### **Load data**
+
+```{r}
+agegaps <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-02-14/age_gaps.csv")
+```
+
+#### **Quick look**
+
+```{r}
+glimpse(agegaps)
+```
+
+#### **Checking the assignment for gender of oldest and youngest in the pair**
+
+It looks like the variable character_1_gender does have the gender of the older partner, using date of birth so there are no ties. Will continue with my factor variable with multiple levels. 
+
+```{r}
+table(agegaps$character_1_gender, agegaps$character_2_gender)
+
+agegaps$OlderGender <- ifelse(agegaps$actor_1_birthdate < agegaps$actor_2_birthdate, agegaps$character_1_gender, (ifelse(agegaps$actor_1_birthdate > agegaps$actor_2_birthdate, agegaps$character_2_gender, "none")))
+
+agegaps$OlderGenderF <- factor(ifelse(agegaps$OlderGender=="man",1,
+                                   ifelse(agegaps$OlderGender=="woman", 2, 3)),
+                              levels=1:3,
+                              labels=c("man",
+                                       "woman",
+                                       "none"))
+
+#table(agegaps$OlderGender, agegaps$OlderGenderF)
+table(agegaps$character_1_gender, agegaps$OlderGenderF)
+```
+
+#### **Create counts and plot older gender by release year**
+
+```{r}
+count_by_year_gender <- agegaps %>% count(release_year, OlderGenderF, sort = TRUE)
+#count_by_year_gender[order(count_by_year_gender$release_year, count_by_year_gender$OlderGenderF), ]
+
+ggplot(count_by_year_gender, aes(x = release_year, y = n, fill = OlderGenderF)) +
+  geom_line(position = position_dodge(0.2)) +
+  geom_point(position = position_dodge(0.2), size = 3, shape = 21) + 
+  scale_fill_manual(values=c("#1770d4", "#22a861")) +
+  scale_x_continuous(breaks=c(1935, 1945, 1955, 1965, 1975, 1985, 1995, 2005, 2015, 2025))  +
+  ggtitle("Older Character Gender by Year") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Release Year") + ylab("Total #")
+```
+
+#### **Compare age difference by older gender**
+
+```{r}
+ggplot(agegaps, aes(x=OlderGenderF, y=age_difference, fill = OlderGenderF)) + 
+  geom_violin() + ggtitle("Age Difference by Older Gender") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Older Gender") + ylab("Age Difference (# years)") + 
+  theme_classic()+scale_fill_manual(values=c("#1770d4","#22a861"))+ 
+  stat_summary(fun = "mean", geom = "crossbar", color="red")+ 
+  theme(legend.position="none")+ 
+  theme(aspect.ratio=1)
+
+t.test(age_difference ~ OlderGenderF, data = agegaps, var.equal = TRUE)
+```
+
+#### **See how many movies have gendered titles**
+
+This doesn't look that interesting (not many records).
+
+```{r}
+agegaps[grep("Woman |Her |She |Women |Lady |Ladies |Man |Him |Men |Guy |Guys |Gal |Gals |His |Fella |Gentlemen |Gentleman |Girl |Girls |Boy |Boys |Hers |He ", agegaps$movie_name), "movie_name"]
+```
+
+Will try playing around with the Bechdel data from 2021 instead.
+
+```{r}
+# Load data
+raw_bechdel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
+names(raw_bechdel)
+
+# Get the mean Bechdel rating by year and combine it with these data
+mean_rating <- raw_bechdel %>%
+  group_by(year) %>%
+  summarise_at(vars(rating), list(name = mean))
+
+# Merge by year and keep only those in agegaps df
+combo_agegaps_bechdel <- merge(count_by_year_gender, mean_rating, by.x = "release_year", 
+             by.y = "year", all.x = TRUE, all.y = FALSE)
+oldermen<- combo_agegaps_bechdel %>%
+  filter(OlderGenderF %in% c("man")) %>%
+  select(n, name, release_year)
+olderwomen<- combo_agegaps_bechdel %>%
+  filter(OlderGenderF %in% c("woman"))%>%
+  select(n, name, release_year)
+
+oldermen <- rename(oldermen, Mean.Bechdel = name)
+ggplot(oldermen, aes(x=release_year, y=n, size = n, color=Mean.Bechdel)) +
+    geom_point(alpha=0.7) +
+  ggtitle("Older Male Characters: Number and Mean Bechdel Rating by Year") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  xlab("Release Year") + ylab("Total # Movies with Older Man")
+  
+olderwomen <- rename(olderwomen, Mean.Bechdel = name)
+ggplot(olderwomen, aes(x=release_year, y=n, size = n, color=Mean.Bechdel)) +
+    geom_point(alpha=0.7) +
+  ggtitle("Older Female Characters: Number and Mean Bechdel Rating by Year") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  xlab("Release Year") + ylab("Total # Movies with Older Woman")
+  
+```
