@@ -1,0 +1,84 @@
+---
+title: "Module 8: Model Fitting"
+author: "Nicole Luisi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This Quarto file was developed for the MADA Module 8 exercise.
+
+### **Load and Process Data**
+
+##### **Load required packages**
+
+```{r}
+#| warning: false
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(tidymodels)
+library(dplyr)
+```
+
+##### **Load data**
+
+```{r}
+# Note: Ignore extension on file, actually an RDS file 
+mod8 <- readRDS(here("fluanalysis", "data", "mod8_clean.rds"))
+```
+
+##### **Fit a linear model to the continuous outcome (BodyTemp) using only the main predictor of interest (RunnyNose).**
+
+```{r}
+# Simple model with BodyTemp ~ RunnyNose
+lm_mod <- linear_reg()
+lm_mini <- 
+  lm_mod %>% 
+  fit(BodyTemp ~ RunnyNose, data = mod8)
+tidy(lm_mini)
+```
+
+##### Fit another linear model to the continuous outcome using all (important) predictors of interest.
+
+```{r}
+lm_mod <- linear_reg()
+lm_full <-  lm_mod %>%  set_engine("lm") %>% 
+  fit(BodyTemp ~ . ,data = mod8)
+tidy(lm_full)
+```
+
+##### Compare model results for the model with just the main predictor and all predictors.
+
+```{r}
+anova(lm_mini$fit, lm_full$fit)
+
+glance(lm_mini) %>%
+  dplyr::select(adj.r.squared, sigma, AIC, BIC, p.value)
+
+glance(lm_full) %>%
+  dplyr::select(adj.r.squared, sigma, AIC, BIC, p.value)
+```
+
+##### Fit a logistic model to the categorical outcome (Nausea) using only the main predictor of interest.
+
+```{r}
+lrg_mini <- logistic_reg() %>% 
+  set_engine("glm") %>% 
+  fit(Nausea ~ RunnyNose, data = mod8)
+tidy(lrg_mini)
+```
+
+##### Fit another logistic model to the categorical outcome using all (important) predictors of interest.
+
+```{r}
+lrg_full <- logistic_reg() %>% 
+  set_engine("glm") %>% 
+  fit(Nausea ~ ., data = mod8)
+tidy(lrg_full)
+```
+
+##### Compare model results for the categorical model with just the main predictor and all predictors.
+
+```{r}
+anova(lrg_mini$fit, lrg_full$fit)
+```

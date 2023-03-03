@@ -1,0 +1,158 @@
+---
+title: "Module 8: Exploration"
+author: "Nicole Luisi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This Quarto file was developed for the MADA Module 8 exercise.
+
+### **Load and Process Data**
+
+##### **Load required packages**
+
+```{r}
+#| warning: false
+library("here")
+library("tidyverse")
+library("gt")
+library("ggplot2")
+library("reshape2")
+library("grid")
+library("gridExtra")
+```
+
+##### **Load data**
+
+```{r}
+# Note: Ignore extension on file, actually an RDS file 
+mod8 <- readRDS(here("fluanalysis", "data", "mod8_clean.rds"))
+```
+
+##### **Explore data**
+
+##### For each (important) variable, produce and print some numerical output (e.g. a table or some summary statistics numbers).
+    
+```{r}
+# Quick look at data
+names(mod8)
+str(mod8)
+glimpse(mod8)
+
+mod8 %>% gt::gt() %>% 
+  gt::tab_header(title = "Flu Data") %>%
+  gt::tab_style(style = list(gt::cell_fill(color = "#7cb9e8"),
+                             gt::cell_text(weight = "bold")),
+                locations = gt::cells_body(columns = c(BodyTemp, Nausea)))
+
+# Quick look at stats for key outcome vars
+summary(mod8$BodyTemp)
+table(mod8$Nausea, useNA="always")
+
+# Separate yes/no vars and 4-level severity vars into subsets 
+yesno_vars<-mod8 %>% select(SwollenLymphNodes, ChestCongestion, ChillsSweats, NasalCongestion, CoughYN, Sneeze, Fatigue, SubjectiveFever, Headache,         
+                            WeaknessYN, CoughYN2, MyalgiaYN, RunnyNose, AbPain, ChestPain, Diarrhea, EyePn, Insomnia, ItchyEye, Nausea, EarPn, Hearing,
+                            Pharyngitis, Breathless, ToothPn, Vision, Vomit, Wheeze)
+sevlev_vars<- mod8 %>% select(Weakness, CoughIntensity, Myalgia)
+
+# Look at counts for all yes/no vars
+levs2 <- c("No", "Yes")
+yesno_counts<-t(data.frame(sapply(yesno_vars, function(x) table(factor(x, levels=levs2, ordered=TRUE)))))
+yesno_counts
+ 
+# Look at counts for all 4-level severity vars
+levs4 <- c("None", "Mild", "Moderate", "Severe")
+sevlev_counts<-t(data.frame(sapply(sevlev_vars, function(x) table(factor(x, levels=levs4, ordered=TRUE)))))
+sevlev_counts               
+```
+
+##### For each (important) continuous variable, create a histogram or density plot.
+    
+```{r}
+ggplot(mod8, aes(mod8$BodyTemp)) +
+  geom_histogram(aes(y = ..density..), fill='lightblue', col='blue', bins=50) +
+  labs(title = "Histogram for Body Temperature",
+       x = "Body Temperature",
+       y = "Frequency") +
+  stat_function(fun = dnorm, args = list(mean=mean(mod8$BodyTemp), sd=sd(mod8$BodyTemp)), col='red', lwd=1, lty='dashed') 
+```
+
+##### Create scatterplots or boxplots or similar plots for the variable you decided is your main outcome of interest and the most important (or all) independent variables/predictors (choose a few predictor variables).
+
+```{r}
+# Outcome 1: Body Temp
+boxplot(mod8$BodyTemp,
+main = "Mean Body Temperature",
+xlab = "Body Temperature",
+ylab = " ",
+col = "lightblue",
+border = "red",
+horizontal = TRUE,
+notch = TRUE
+)
+
+# Outcome 2: Nausea
+ggplot(mod8, aes(x=reorder(Nausea, Nausea, function(x)-length(x)))) +
+  geom_bar(fill='lightblue') +
+  labs(x='Nausea', y='Frequency')
+
+# Outcome 1 and 2 together
+ggplot(mod8, aes(x=Nausea, y=BodyTemp)) +
+  labs(title = "Box Plot of Body Temp with Nausea") +
+  geom_boxplot(fill='lightblue')
+
+# Look at some predictors with each outcome
+
+# BodyTemp
+#df.m <- melt(mod8, id.var = "Label")
+p1<-ggplot(mod8, aes(x=SwollenLymphNodes, y=BodyTemp)) +
+  geom_boxplot(fill='steelblue')
+p2<-ggplot(mod8, aes(x=NasalCongestion, y=BodyTemp)) +
+  geom_boxplot(fill='red')
+p3<-ggplot(mod8, aes(x=SubjectiveFever, y=BodyTemp)) +
+  geom_boxplot(fill='orange')
+p4<-ggplot(mod8, aes(x=Diarrhea, y=BodyTemp)) +
+  geom_boxplot(fill='green')
+p5<-ggplot(mod8, aes(x=Vomit, y=BodyTemp)) +
+  geom_boxplot(fill='purple')
+p6<-ggplot(mod8, aes(x=Pharyngitis, y=BodyTemp)) +
+  geom_boxplot(fill='yellow')
+p7<-ggplot(mod8, aes(x=CoughYN, y=BodyTemp)) +
+  geom_boxplot(fill='lightblue')
+p8<-ggplot(mod8, aes(x=EarPn, y=BodyTemp)) +
+  geom_boxplot(fill='pink')
+p9<-ggplot(mod8, aes(x=AbPain, y=BodyTemp)) +
+  geom_boxplot(fill='grey')
+grid.arrange(p1,  p2,  p3,  p4,  p5,  p6,  p7, p8, p9,
+  nrow = 3,
+  top = "Body Temp with Select Predictors",
+  bottom = textGrob(".",
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+# Nausea
+n_Weakness <- table(mod8$Weakness,
+                   mod8$Nausea)
+barplot(t(n_Weakness),
+        legend.text = TRUE,
+        beside = TRUE,
+        xlab="Weakness", args.legend=list(title="Nausea"), col=1:2)
+
+n_CoughIntensity <- table(mod8$CoughIntensity,
+                   mod8$Nausea)
+barplot(t(n_CoughIntensity),
+        legend.text = TRUE,
+        beside = TRUE,
+        xlab="Cough Intensity", args.legend=list(title="Nausea"), col=1:2)
+
+n_SubjectiveFever <- table(mod8$SubjectiveFever,
+                   mod8$Nausea)
+barplot(t(n_SubjectiveFever),
+        legend.text = TRUE,
+        beside = TRUE,
+        xlab="Subjective Fever", args.legend=list(title="Nausea"), col=1:2)
+```
+
