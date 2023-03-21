@@ -1,0 +1,138 @@
+---
+title: "Module 10: Improving Models"
+author: "Nicole Luisi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This Quarto file was developed for the MADA Module 10 exercise.
+
+### **Load and Process Data**
+
+##### **Load packages**
+
+```{r}
+#| warning: false
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(tidymodels)
+library(dplyr)
+```
+
+##### **Load data**
+
+```{r}
+# Note: Ignore extension on file, actually an RDS file 
+mod10 <- readRDS(here("fluanalysis", "data", "mod8_clean.rds"))
+```
+
+
+##### **Write code that takes the data and splits it randomly into a train and test**
+
+```{r}
+# Set seed
+set.seed(123)
+
+# Put 3/4 of the data into the training set 
+data_split <- initial_split(mod10, prop = 3/4)
+
+# Create data frames for the two sets
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+```
+
+##### **Create a simple recipe that fits a logistic model to our categorical outcome of interest, using all predictors**
+
+```{r}
+# Create recipe using Fatigue as categorical variable
+mod10_rec <- recipe(Fatigue ~ ., data = train_data) 
+
+# Logistic model
+mod10_lr_mod <- logistic_reg() %>% set_engine("glm")
+
+# Model workflow to pair model and recipe 
+mod10_wflow <- workflow() %>% 
+  add_model(mod10_lr_mod) %>% 
+  add_recipe(mod10_rec)
+
+mod10_wflow
+
+# Prepare the recipe and train the model from the resulting predictors
+mod10_fit <- 
+  mod10_wflow %>% 
+  fit(data = train_data)
+
+# Pull fitted model object, get model coefficients
+mod10_fit %>% 
+  extract_fit_parsnip() %>% 
+  tidy()
+```
+
+##### **Look at the predictions, ROC curve and ROC-AUC; apply to both the training and the test data**
+
+```{r}
+# Use the trained workflow to predict with the unseen test data
+predict(mod10_fit, test_data)
+
+mod10_aug <- 
+  augment(mod10_fit, test_data)
+
+mod10_aug %>%
+  select(Fatigue, .pred_No, .pred_Yes)
+
+# ROC Curve
+mod10_aug %>% 
+  roc_curve(truth = Fatigue, .pred_No) %>% 
+  autoplot()
+
+mod10_aug %>% 
+  roc_auc(truth = Fatigue, .pred_No)
+
+```
+
+##### **Alternative model, only fit main predictor to the categorical outcome**
+
+```{r}
+# Create recipe using Fatigue as categorical variable
+mod10_rec2 <- recipe(Fatigue ~ BodyTemp, data = train_data) 
+
+# Logistic model
+mod10_lr_mod2 <- logistic_reg() %>% set_engine("glm")
+
+# Model workflow to pair model and recipe 
+mod10_wflow2 <- workflow() %>% 
+  add_model(mod10_lr_mod2) %>% 
+  add_recipe(mod10_rec2)
+
+mod10_wflow2
+
+# Prepare the recipe and train the model from the resulting predictors
+mod10_fit2 <- 
+  mod10_wflow2 %>% 
+  fit(data = train_data)
+
+# Pull fitted model object, get model coefficients
+mod10_fit2 %>% 
+  extract_fit_parsnip() %>% 
+  tidy()
+
+# Use the trained workflow to predict with the unseen test data
+predict(mod10_fit2, test_data)
+
+mod10_aug2 <- 
+  augment(mod10_fit2, test_data)
+
+mod10_aug2 %>%
+  select(Fatigue, .pred_No, .pred_Yes)
+
+# ROC Curve
+mod10_aug2 %>% 
+  roc_curve(truth = Fatigue, .pred_No) %>% 
+  autoplot()
+
+mod10_aug2 %>% 
+  roc_auc(truth = Fatigue, .pred_No)
+```
+
+For fatigue, the full model with all predictors (ROC-AUC 0.7) is better than the alternative model with only the main predictor (ROC-AUC 0.6).
