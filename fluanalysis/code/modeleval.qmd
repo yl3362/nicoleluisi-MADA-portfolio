@@ -136,3 +136,120 @@ mod10_aug2 %>%
 ```
 
 For fatigue, the full model with all predictors (ROC-AUC 0.7) is better than the alternative model with only the main predictor (ROC-AUC 0.6).
+
+
+# This section added by YaoLu
+
+```{r}
+d1 <- readRDS(here::here('fluanalysis','data','mod8_clean.rds'))
+# Fix the random numbers by setting the seed 
+# This enables the analysis to be reproducible when random numbers are used 
+set.seed(222)
+# Put 3/4 of the data into the training set 
+data_split <- initial_split(d1, prop = 3/4)
+
+# Create data frames for the two sets:
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+
+# Initial a new recipe
+BodyTemp_rec <- 
+  recipe(BodyTemp ~ ., data = train_data) 
+
+# Fit a model with a recipe
+lr_mod <- 
+  linear_reg() %>% 
+  set_engine("lm")
+
+BodyTemp_wflow <- 
+  workflow() %>% 
+  add_model(lr_mod) %>% 
+  add_recipe(BodyTemp_rec)
+
+BodyTemp_wflow
+
+BodyTemp_fit <- 
+  BodyTemp_wflow %>% 
+  fit(data = train_data)
+
+BodyTemp_fit %>% 
+  extract_fit_parsnip() %>% 
+  tidy()
+
+## ---- predict --------
+#Use a trained workflow to predict
+#train_data
+predict(BodyTemp_fit, train_data)
+
+BodyTemp_aug <- 
+  augment(BodyTemp_fit, train_data)
+
+BodyTemp_aug %>% rmse(truth = BodyTemp, .pred)
+```
+
+
+```{r}
+#test_data
+predict(BodyTemp_fit, test_data)
+
+BodyTemp_aug <- 
+  augment(BodyTemp_fit, test_data)
+
+BodyTemp_aug %>%   rmse(truth = BodyTemp, .pred)
+```
+
+```{r}
+## ---- fit2 --------
+#Alternative model
+# Initial a new recipe
+BodyTemp_rec <- 
+  recipe(BodyTemp ~ RunnyNose, data = train_data) 
+
+# Fit a model with a recipe
+lr_mod <- 
+  linear_reg() %>% 
+  set_engine("lm")
+
+BodyTemp_wflow <- 
+  workflow() %>% 
+  add_model(lr_mod) %>% 
+  add_recipe(BodyTemp_rec)
+
+BodyTemp_wflow
+
+BodyTemp_fit <- 
+  BodyTemp_wflow %>% 
+  fit(data = train_data)
+
+BodyTemp_fit %>% 
+  extract_fit_parsnip() %>% 
+  tidy()
+
+## ---- predict --------
+#Use a trained workflow to predict
+#train_data
+predict(BodyTemp_fit, train_data)
+
+BodyTemp_aug <- 
+  augment(BodyTemp_fit, train_data)
+
+BodyTemp_aug %>% rmse(truth = BodyTemp, .pred)
+```
+
+
+```{r}
+#test_data
+predict(BodyTemp_fit, test_data)
+
+BodyTemp_aug <- 
+  augment(BodyTemp_fit, test_data)
+
+BodyTemp_aug %>%   rmse(truth = BodyTemp, .pred)
+```
+
+#summary
+For the model with all predictors, RMSE for train data is 1.11, for test data is 1.14.
+
+For the model with main predictors, RMSE for train data is 1.20, for test data is 1.13.
+
+For train data, RMSE is slightly different. For test data, they have almost the same RMSE. So, we need further information to decide which model should be used.
